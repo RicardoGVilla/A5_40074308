@@ -82,3 +82,43 @@ WordMap map_and_count_words_using_functor(const WordVec& wVec) {
     wcf = std::for_each(wVec.begin(), wVec.end(), wcf);
     return wcf.getMap();
 }
+
+// Task 4 
+
+/* 
+Removing duplicates from a specific vector while preserving the order of the elements
+    - sort the vector
+    - remove the duplicates
+        -  remove starting from the last unique eleemtn to the end
+    - return the new vector 
+*/
+
+WordVec remove_duplicates(const WordVec& words_vector) { 
+    WordVec words = words_vector;   
+    std::sort(words.begin(), words.end());
+    words.erase(std::unique(words.begin(), words.end()), words.end());
+    return words;
+}
+
+// Task 5
+/*
+    - check if the word is a palindrome
+        - a word is a palindrome if it is the same forwards and backwards 
+            - if the word is a palindrome, return true
+            - if the word is not a palindrome, return false
+    - return the result
+*/
+
+bool is_alphabetic(char c) { return std::isalpha(c); }
+
+bool is_palindrome(const std::string& phrase) {
+    std::string temp;
+    std::remove_copy_if(phrase.begin(), phrase.end(), 
+                       std::back_inserter(temp), 
+                       [](char c) { return !is_alphabetic(c); });
+    std::transform(temp.begin(), temp.end(), temp.begin(),
+                  [](unsigned char c) { return std::tolower(c); });
+    return std::equal(temp.begin(), temp.begin() + temp.size()/2, temp.rbegin());
+}
+
+

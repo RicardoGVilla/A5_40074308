@@ -21,4 +21,12 @@ WordMap map_and_count_words_using_lambda(const WordVec& wVec);
 WordMap map_and_count_words_using_functor(const WordVec& wVec);
 
 
+// Task 4 Removing Duplicates
+WordVec remove_duplicates(const WordVec& words_vector);
+
+
+// Task 5 Palindrome Detection
+bool is_palindrome(const std::string& word);
+
+
 #endif // ASSIGNMENT5_H
