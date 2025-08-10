@@ -162,3 +162,26 @@ int count_using_free_func(const WordVec& vec, int n) {
 }
 
 
+// Task 7 
+/*
+    Write a function that uses a std::multiset<std::string, MyComparator> to stored words sorted by increasing length and lexicographic order within each length
+*/
+
+// Custom comparator as a function object
+struct MyComparator {
+    bool operator()(const std::string& s1, const std::string& s2) const {
+        if (s1.size() != s2.size())
+            return s1.size() < s2.size(); // shorter comes first
+        return s1 < s2; // same length → lexicographic
+    }
+};
+
+void multisetUsingMyComparator(const WordVec& vec) {
+    std::multiset<std::string, MyComparator> myset(vec.begin(), vec.end());
+
+    std::copy(myset.begin(), myset.end(),
+              std::ostream_iterator<std::string>(std::cout, " "));
+    std::cout << '\n';
+}
+
+// Task 8 

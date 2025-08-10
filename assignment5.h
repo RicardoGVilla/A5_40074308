@@ -1,32 +1,32 @@
+#ifndef ASSIGNMENT5_H_
+#define ASSIGNMENT5_H_
 
-#ifndef ASSIGNMENT5_H
-#define ASSIGNMENT5_H
+#include <map>
+#include <string>
+#include <vector>
+#include <list>
+#include <algorithm>
 
 
-// Type aliases
+
 using WordVec = std::vector<std::string>;
 using WordList = std::list<std::string>;
 using WordMap = std::map<std::string, size_t>;
 
+WordVec read_words_into_vector(const std::string& inFileName);
 
+WordMap map_and_count_words_using_lambda(const WordVec& wvec);
+WordMap map_and_count_words_using_functor(const WordVec& wvec);
 
-// Task 1 Using std::copy to Extract Words from File
-WordVec read_words_into_vector(const std::string& file_name);
-
-// Task 2: Counting Word Occurrences with Lambda
-WordMap map_and_count_words_using_lambda(const WordVec& wVec);
-
-
-// Task 3: Counting Word Occurrences with Functor
-WordMap map_and_count_words_using_functor(const WordVec& wVec);
-
-
-// Task 4 Removing Duplicates
 WordVec remove_duplicates(const WordVec& words_vector);
 
+bool is_palindrome(const std::string& phrase);
 
-// Task 5 Palindrome Detection
-bool is_palindrome(const std::string& word);
-
-
-#endif // ASSIGNMENT5_H
+size_t count_using_lambda(const WordVec& vec, int n);
+size_t count_using_Free_Func(const WordVec& vec, int n);
+size_t count_using_Functor(const WordVec& vec, int n);
+void multisetUsingMyComparator(const WordVec& vec);
+std::vector<long> getnerate_Fibonacci(int n);
+bool areAnagrams(const std::string& s1, const std::string& s2);
+#include "Solutions.h"
+#endif
