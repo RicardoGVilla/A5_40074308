@@ -205,3 +205,38 @@ std::vector<long> generate_Fibonacci(int n) {
 
     return fibs;
 }
+
+// Task 9
+/*
+    Write a function that checks if two strings are anagrams of each other
+    - remove all non-alphabetic characters
+    - convert to lowercase
+    - check if the sorted strings are equal
+    - return the result
+*/
+bool areAnagrams(const std::string& s1, const std::string& s2) {
+    std::string filtered1, filtered2;
+
+    // Step 1: copy only alphabetic chars
+    std::copy_if(s1.begin(), s1.end(), std::back_inserter(filtered1),
+                 [](unsigned char ch) { return std::isalpha(ch); });
+    std::copy_if(s2.begin(), s2.end(), std::back_inserter(filtered2),
+                 [](unsigned char ch) { return std::isalpha(ch); });
+
+    // Step 2: transform to lowercase
+    std::transform(filtered1.begin(), filtered1.end(), filtered1.begin(),
+                   [](unsigned char ch) { return std::tolower(ch); });
+    std::transform(filtered2.begin(), filtered2.end(), filtered2.begin(),
+                   [](unsigned char ch) { return std::tolower(ch); });
+
+    // Step 3: check lengths early
+    if (filtered1.size() != filtered2.size()) {
+        return false;
+    }
+
+    // Step 4: sort and compare
+    std::sort(filtered1.begin(), filtered1.end());
+    std::sort(filtered2.begin(), filtered2.end());
+
+    return filtered1 == filtered2;
+}
