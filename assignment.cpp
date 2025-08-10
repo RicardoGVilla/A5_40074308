@@ -122,3 +122,43 @@ bool is_palindrome(const std::string& phrase) {
 }
 
 
+// Task 6
+/*
+Count Strings by Length 
+Implement three versions of counting how many strings in a WordVec have a given length n
+Function prototypes:
+   -  count_using_lambda
+   - count_using_functor
+   - count_using_free_func
+*/
+
+// count using lambda
+int count_using_lambda(const WordVec& vec, int n) {
+    return std::count_if(vec.begin(), vec.end(),
+        [n](const std::string& word) { return word.size() == n; });
+}
+
+// functor version 
+struct LengthIs {
+    int n;
+    LengthIs(int len) : n(len) {}
+    bool operator()(const std::string& word) const {
+        return word.size() == n;
+    }
+};
+
+int count_using_functor(const WordVec& vec, int n) {
+    return std::count_if(vec.begin(), vec.end(), LengthIs(n));
+}
+
+// free function version 
+bool freeFunc(const std::string& str, int n) {
+    return str.size() == n;
+}
+
+int count_using_free_func(const WordVec& vec, int n) {
+    auto unaryFreeFunc = std::bind(freeFunc, std::placeholders::_1, n);
+    return std::count_if(vec.begin(), vec.end(), unaryFreeFunc);
+}
+
+
