@@ -185,3 +185,23 @@ void multisetUsingMyComparator(const WordVec& vec) {
 }
 
 // Task 8 
+/*
+   Generate the fibonacci sequence with std:: generate.n 
+     using std::generate_n to fill a vector with Fibonacci numbers without writing an explicit loop yourself
+*/
+
+std::vector<long> generate_Fibonacci(int n) {
+    std::vector<long> fibs(n);
+    long a = 0, b = 1; // starting values
+
+    std::generate_n(fibs.begin(), n, [&, count = 0]() mutable -> long {
+        if (count == 0) { count++; return a; }
+        if (count == 1) { count++; return b; }
+        long next = a + b;
+        a = b;
+        b = next;
+        return next;
+    });
+
+    return fibs;
+}
